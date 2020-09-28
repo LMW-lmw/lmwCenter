@@ -45,8 +45,7 @@
     width: 1400px;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
-    margin-top: 50px;
+    margin: 50px auto 0px auto;
   }
   .routerWidth{
     width: 1124px;

@@ -8,3 +8,12 @@ export function getShopCars(abd) {
     }
   })
 }
+
+export function getRedPacket(abc) {
+  return request({
+    url: '/jzCoupon/getSutUserRedEnvelopeSum.do',
+    params: {
+      abc
+    }
+  })
+}

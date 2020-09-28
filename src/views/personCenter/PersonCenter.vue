@@ -2,7 +2,7 @@
   <div id="person-center">
     <div class="top">
       <img src="~assets/img/personCenter/icon_livetime.png" alt="">
-      <span class="playinfo">
+      <span class="play-info">
         <span class="player">直播</span>
         <span class="play-date">{{liveStreaming.date}}&nbsp;{{liveStreaming.bTime}}&nbsp;~&nbsp;{{liveStreaming.eTime}} , {{liveStreaming.title}}</span>
       </span>
@@ -195,7 +195,7 @@
     height: 20px;
   }
 
-  .playinfo{
+  .play-info{
     position: relative;
     top: 1px;
   }
