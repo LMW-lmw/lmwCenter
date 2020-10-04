@@ -17,3 +17,12 @@ export function getRedPacket(abc) {
     }
   })
 }
+
+export function getDiscount(dlId) {
+  return request({
+    url: '/jzCoupon/getValidJzCouponByStuId.do',
+    params: {
+      dlId
+    }
+  })
+}

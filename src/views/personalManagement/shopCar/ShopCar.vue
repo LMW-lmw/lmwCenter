@@ -76,6 +76,35 @@
               </el-switch>
             </div>
           </div>
+          <div class="pack-line"></div>
+          <ul class="coupon">
+            <li v-for="item in coupon" @click="useCoupon($event)" class="coupon-info">
+              <div class="coupon-left">
+                <div class="coupon-money">
+                  <span>¥</span>
+                  <span class="used-amount">{{item.usedAmount}}</span>
+                </div>
+                <div class="coupon-type">
+                  <div v-if="item.type==1">新人券</div>
+                  <div v-if="item.type==2">立减券</div>
+                  <div v-if="item.type==3">折扣券</div>
+                  <div v-if="item.type==''">全场通用</div>
+                </div>
+              </div>
+              <div class="coupon-right">
+                <div class="coupon-title"><span>{{item.title}}</span> (满<span>{{item.withAmount}}</span>减<span>{{item.usedAmount}}</span>)</div>
+                <div class="coupon-time">
+                  <span>有效期至: </span>
+                  <span>{{item.endTime}}</span>
+                </div>
+                <div class="coupon-line"></div>
+                <div class="coupon-scope">
+                  <span>使用范围：</span>
+                  <span>全场通用</span>
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
       </div>
     </transition>
@@ -97,7 +126,7 @@
 </template>
 
 <script>
-  import {getShopCars,getRedPacket} from "../../../network/shopCar/shopCar";
+  import {getShopCars,getRedPacket,getDiscount} from "../../../network/shopCar/shopCar";
   import buyStatus from "../../../components/content/buyStatus/buyStatus";
 
   export default {
@@ -114,7 +143,9 @@
         value: false,
         usePack: false,
         flag: false,
-        hint: true,
+        hint: false,
+        coupon: [],
+        couponActive: false
       }
     },
     computed: {
@@ -126,6 +157,7 @@
     created() {
       this.getShopCars("abc")
       this.getRedPacket('abc')
+      this.getDiscount(2785)
     },
     mounted() {
       let moveDemo = document.getElementById('pop-up')
@@ -142,9 +174,13 @@
       },
       getShopCars(abd) {
         getShopCars(abd).then(res => {
-          console.log(res)
           this.tableData = res.V
-          console.log(this.tableData);
+        })
+      },
+      getDiscount(dlId) {
+        getDiscount(dlId).then(res => {
+          this.coupon = res.V
+          console.log(this.coupon)
         })
       },
       //其他
@@ -206,8 +242,6 @@
           }
           div.style.left = X + "px";
           div.style.top = Y + "px";
-          console.log(div.style.left);
-          console.log(div.style.top);
         }
         div.onmousedown = function (e) {
           timeStart = getTimeNow();
@@ -258,6 +292,16 @@
       },
       hintClose(){
         this.hint = false
+      },
+      useCoupon(e){
+        let event = e.currentTarget
+        console.log(11)
+        // for(let i=0; i<document.getElementsByClassName("coupon-info").length; i++){
+        //   console.log('xx')
+        //   document.getElementsByClassName("coupon-info")[i].classList.add("borderNone")
+        // }
+
+        event.classList.add('clickCoupon')
       }
     }
   }
@@ -446,6 +490,99 @@
 
   .use-click{
     font-size: 18px !important;
+  }
+
+  .pack-line{
+    border-bottom: 1px solid;
+    padding: 10px 0px;
+  }
+
+  .coupon{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .coupon-info{
+    width: 330px;
+    height: 90px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.06);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+    margin: 15px 0px 0px 20px;
+    position: relative;
+  }
+
+  .coupon-left{
+    width: 111px;
+    background: url(../../../assets/img/backgroundImg/coupon.png) no-repeat;
+    background-size: 100% 100%;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .used-amount{
+    font-size: 34px;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
+  .clickCoupon {
+    border: 0.01rem dashed #1090ff;
+  }
+
+  .borderNone{
+    border: none;
+  }
+
+  .coupon-right{
+    padding-left: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .coupon-right{
+
+  }
+
+  .coupon-title{
+    font-size: 14px;
+    color: #333333;
+    margin-top: 12px;
+  }
+
+  .coupon-time{
+    font-size: 12px;
+    color: #999999;
+    margin-top: 10px;
+  }
+
+  .coupon-line{
+    background-color: #e4e4e4;
+    width: 100%;
+    height: 1px;
+    margin-top: 8px;
+  }
+
+  .coupon-scope{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 12px;
+    color: #999999;
+    margin-top: 8px;
   }
 
   #bg-box{

@@ -17,7 +17,7 @@
           <div slot="item-text">开始听课</div>
         </all-side-bars>
 
-        <all-side-bars path="/couresCenter">
+        <all-side-bars path="/courseCenter">
           <img src="~assets/img/sidebar/icon_center.png" slot="item-img">
           <img src="~assets/img/sidebar/icon_center1.png" slot="item-img-active">
           <div slot="item-text">课程中心</div>

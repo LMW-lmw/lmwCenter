@@ -1,15 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-const home = () => import('../views/home')
+
 const personCenter = () => import('../views/personCenter/PersonCenter')
 const beginLesson = () => import('../views/myCourses/beginLesson/BeginLesson')
-const couresCenter = () => import('../views/myCourses/courseCenter/CourseCenter')
+const courseCenter = () => import('../views/myCourses/courseCenter/CourseCenter')
 const doExercise = () => import('../views/myQuestionBank/doExercise/DoExercise')
 const accountSecurity = () => import('../views/personalManagement/accountSecurity/AccountSecurity')
 const myMoney = () => import('../views/personalManagement/myMoney/MyMoney')
 const myOrder = () => import('../views/personalManagement/myOrder/MyOrder')
 const shopCar = () => import('../views/personalManagement/shopCar/ShopCar')
-
+import home from "../views/home";
+// import home from "../views/home";
+// import personCenter from "../views/personCenter/PersonCenter";
+// import beginLesson from "../views/myCourses/beginLesson/BeginLesson";
+// import courseCenter from "../views/myCourses/courseCenter/CourseCenter";
+// import doExercise from "../views/myQuestionBank/doExercise/DoExercise";
+// import accountSecurity from "../views/personalManagement/accountSecurity/AccountSecurity";
+// import myMoney from "../views/personalManagement/myMoney/MyMoney";
+// import myOrder from "../views/personalManagement/myOrder/MyOrder";
+// import shopCar from "../views/personalManagement/shopCar/ShopCar";
 
 Vue.use(VueRouter)
 
@@ -35,9 +44,9 @@ const routes = [
     component: beginLesson
   },
   {
-    path: '/couresCenter',
-    name: 'couresCenter',
-    component: couresCenter
+    path: '/courseCenter',
+    name: 'courseCenter',
+    component: courseCenter
   },
   {
     path: '/doExercise',
