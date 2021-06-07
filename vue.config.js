@@ -1,9 +1,9 @@
-const path = require('path');//引入path模块
-function resolve(dir){
-  return path.join(__dirname,dir)//path.join(__dirname)设置绝对路径
+const path = require('path') //引入path模块
+function resolve(dir) {
+  return path.join(__dirname, dir) //path.join(__dirname)设置绝对路径
 }
-module.exports= {
-  publicPath: "/",
+module.exports = {
+  publicPath: '/',
   assetsDir: 'static',
   outputDir: 'dist',
 
@@ -19,42 +19,43 @@ module.exports= {
   //     }
   //   }
   // },
-  chainWebpack:(config)=>{
+  chainWebpack: (config) => {
     config.resolve.alias
-      .set('@',resolve('./src'))
-      .set('components',resolve('./src/components'))
-      .set('assets',resolve('./src/assets'))
-      .set('commonjs',resolve('./src/commonjs'))
-      .set('network',resolve('./src/network'))
-      .set('views',resolve('./src/views'))
+      .set('@', resolve('./src'))
+      .set('components', resolve('./src/components'))
+      .set('assets', resolve('./src/assets'))
+      .set('commonjs', resolve('./src/commonjs'))
+      .set('network', resolve('./src/network'))
+      .set('views', resolve('./src/views'))
     //set第一个参数：设置的别名，第二个参数：设置的路径
-
   },
   css: {
     loaderOptions: {
       postcss: {
-        plugins: [require('postcss-px2rem')({
-          remUnit: 192
-        })]
-      }
-    }
+        plugins: [
+          require('postcss-px2rem')({
+            remUnit: 192,
+          }),
+        ],
+      },
+    },
   },
   devServer: {
     port: 8080, // 端口号
     host: '127.0.0.1',
     open: true,
-    proxy: { // 跨域配置
-      '/api': { // 过滤的api
-      //121.196.35.76:80/360xkw/tiku
-      //http://www.ahjszgw.com/360xkw/tiku
+    proxy: {
+      // 跨域配置
+      '/api': {
+        // 过滤的api
         target: 'http://www.ahjszgw.com', // 要访问的URL
-        // target: 'http://localhost:8080',
-        changeOrigin: true, // true，启用跨域
-        pathRewrite: { // 要转发到的地址，根据需要也可不配置
-          '^/api': '/'
-        }
-      }
-    }
+        changeOrigin: true, // true，欺骗服务器
+        pathRewrite: {
+          // 要转发到的地址，根据需要也可不配置
+          '^/api': '/',
+        },
+      },
+    },
   },
   configureWebpack: {
     performance: {
@@ -64,12 +65,12 @@ module.exports= {
       //生成文件的最大体积
       maxAssetSize: 30000000,
       //只给出 js 文件的性能提示
-      assetFilter: function (assetFilename) {
-        return assetFilename.endsWith('.js');
-      }
-    }
+      assetFilter: function(assetFilename) {
+        return assetFilename.endsWith('.js')
+      },
+    },
     // performance: {
     //   hints:false
     // }
-  }
+  },
 }
