@@ -3,7 +3,7 @@ function resolve(dir){
   return path.join(__dirname,dir)//path.join(__dirname)设置绝对路径
 }
 module.exports= {
-  publicPath: "./",
+  publicPath: "/",
   assetsDir: 'static',
   outputDir: 'dist',
 
@@ -45,10 +45,13 @@ module.exports= {
     open: true,
     proxy: { // 跨域配置
       '/api': { // 过滤的api
-        target: 'http://www.ahjszgw.com/360xkw/tiku', // 要访问的URL
+      //121.196.35.76:80/360xkw/tiku
+      //http://www.ahjszgw.com/360xkw/tiku
+        target: 'http://www.ahjszgw.com', // 要访问的URL
+        // target: 'http://localhost:8080',
         changeOrigin: true, // true，启用跨域
         pathRewrite: { // 要转发到的地址，根据需要也可不配置
-          '^/api': ''
+          '^/api': '/'
         }
       }
     }

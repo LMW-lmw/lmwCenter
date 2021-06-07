@@ -12,6 +12,7 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
     "postcss-px2rem": "^0.3.0",
+    "postcss-px2rem-exclude": "0.0.6",
     "px2rem-loader": "^0.1.9",
     "vue": "^2.6.11",
     "vue-cli-configjs": "^2.0.0",
@@ -25,6 +26,7 @@
     "babel-plugin-component": "^1.1.1",
     "compression-webpack-plugin": "^6.0.2",
     "image-webpack-loader": "^7.0.1",
+    "postcss-pxtorem": "^5.1.1",
     "vue-template-compiler": "^2.6.11"
   }
 }

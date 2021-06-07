@@ -1,12 +1,10 @@
 <template>
-  <div>
-    首页
-  </div>
+  <div>组件</div>
 </template>
 
 <script>
   export default {
-    name: "home"
+    name: "coupon"
   }
 </script>
 
